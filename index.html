@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Calculator app</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@700&display=swap');
+
+
+:root{
+  --background-color:hsl(222, 26%, 31%);
+
+
+    --head-text-color:white;
+    --body-text-color:hsl(221, 14%, 31%);
+    --special-text-color:white;
+
+    --output-color: hsl(224, 36%, 15%);
+    
+    --keypad-background:hsl(223, 31%, 20%);
+    
+    --key-background:hsl(195, 7%, 89%);
+    --key-shadow:rgb(201, 179, 179);
+
+    --special-key-background:hsl(225, 21%, 49%);
+    --special-key-shadow:hsl(224, 28%, 35%);
+
+    --calculate-key-background:hsl(6, 63%, 50%);
+    --calculate-key-shadow:hsl(6, 70%, 34%);
+}
+
+
+[data-theme="white"] {
+    --background-color:hsl(0, 0%, 90%);
+
+
+    --head-text-color:hsl(60, 10%, 19%);
+    --body-text-color:hsl(221, 14%, 31%);
+    --special-text-color:white;
+
+    --output-color: hsl(0, 0%, 93%);
+
+    --keypad-background:hsl(0, 5%, 81%);
+
+    --key-background: hsl(45, 7%, 89%);
+    --key-shadow: hsl(35, 11%, 61%);
+
+    --calculate-key-background:hsl(25, 98%, 40%);
+    --calculate-key-shadow:hsl(25, 99%, 27%);
+
+    --special-key-background: hsl(185, 42%, 37%);
+    --special-key-shadow: hsl(185, 58%, 25%);;
+}
+
+[data-theme="neon"] {
+    --background-color:hsl(268, 75%, 9%);
+
+
+
+    --head-text-color:white;
+    --body-text-color:hsl(221, 14%, 31%);
+    --special-text-color:white;
+
+
+    --output-color:  hsl(268, 71%, 12%);
+
+    --keypad-background:hsl(0, 5%, 81%);
+
+    --key-background: hsl(281, 89%, 26%);
+    --key-shadow:hsl(285, 91%, 52%);
+
+    --special-key-background:hsl(176, 100%, 44%);
+    --special-key-shadow: hsl(177, 92%, 70%);
+
+    --calculate-key-background: hsl(268, 47%, 21%);
+    --calculate-key-shadow:  hsl(290, 70%, 36%);
+
+}
+
+
+body{
+  background-color:var(--background-color);
+  font-family: 'Spartan', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+main{
+  height: 100vh;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.calculator{
+}
+.cal-head{
+  display: flex;
+  justify-content:space-between;
+  color:var(--head-text-color);
+  margin-bottom: 30px;
+}
+
+.theme-selector{
+  position: relative;
+  font-size: 14px;
+}
+
+
+.theme-num{
+  position:absolute ;
+  right: 5px;
+  font-size: 10px;
+  top:-13px;
+  display: flex;
+  justify-content:space-between;
+  width: 50px;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 50px;
+  height: 15px;
+  background-color: var(--keypad-background) ;
+
+  border-radius: 25px;  
+  outline: none;
+  opacity: 1;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  padding:2px;
+  cursor: pointer;
+
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%; 
+  background: var(--calculate-key-background);
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: var(--calculate-key-background);
+  cursor: pointer;
+}
+
+.output{
+  background-color:  var(--output-color);
+  color: var(--head-text-color);
+  padding:20px;
+  text-align: end;
+  border: none;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 36px;
+}
+
+      .grid {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-gap: 20px;
+        background-color:var(--keypad-background);
+        border-radius: 5px;
+        margin-top: 10px;
+        padding:20px
+      }
+
+      .num {
+        background-color: var(--key-background);
+        text-align: center;
+        padding:10px;
+        border-radius: 5px;
+        box-shadow: 0px 2px 0px 1px var(--key-shadow);
+        cursor: pointer;
+        color:var(--body-text-color)
+      }
+
+      .del,.reset{
+        background-color: var(--special-key-background);
+        text-align: center;
+        padding:5px;
+        border-radius: 5px;
+        box-shadow: 0px 2px 0px 1px var(--special-key-shadow);
+        color: var(--special-text-color);
+        text-transform:uppercase;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+
+      }
+      .reset{
+        grid-column: 1/3;
+        cursor: pointer;
+        color:var(--special-text-color)
+
+      }
+      .calculate{
+        background-color: var(--calculate-key-background);
+        text-align: center;
+        padding:5px;
+        border-radius: 5px;
+        box-shadow: 0px 2px 0px 1px var(--calculate-key-shadow);
+        grid-column: 3 / 5;
+        color:white;
+        cursor: pointer;
+
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="calculator">
+        <div class="cal-head">
+          <span>cal</span>
+          <div class="theme-selector">
+            THEME
+            <div class="theme-num">
+              <div>1</div>
+              <div>2</div>
+              <div>3</div>
+            </div>
+            <input  type="range" min="1" max="3" value="50" class="slider" id="myRange">
+          </div>
+          <!-- <div class="slider">123</div> -->
+        </div>
+
+        <div class="cal-display">
+          <input type="text" class="output" value="1234" />
+        </div>
+
+        <div class="cal-body">
+          <div class="grid">
+            <div class="num">7</div>
+            <div class="num">8</div>
+            <div class="num">9</div>
+
+            <div class="del">del</div>
+            
+            <div class="num">4</div>
+            <div class="num">5</div>
+            <div class="num">6</div>
+
+            <div class="num">+</div>
+
+            <div class="num">1</div>
+            <div class="num">2</div>
+            <div class="num">3</div>
+
+            <div class="num">-</div>
+
+            <div class="num">.</div>
+            <div class="num">0</div>
+
+            <div class="num">/</div>
+            <div class="num">*</div>
+
+
+            <div class="reset">reset</div>
+            <div class="calculate">=</div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </div>
+
+
+
+<script>
+const toggleSwitch = document.querySelector('.slider');
+const currentTheme = localStorage.getItem('theme');
+
+if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+  
+    if (currentTheme === 'dark') {
+        toggleSwitch.checked = true;
+    }
+}
+
+function switchTheme(e) {
+
+
+  if (e.target.value==1) {
+    document.documentElement.setAttribute('data-theme', 'normal');
+ console.log('in second');
+        localStorage.setItem('theme', 'normal');
+
+  }
+
+  if (e.target.value==2) {
+    document.documentElement.setAttribute('data-theme', 'white');
+ console.log('in second');
+        localStorage.setItem('theme', 'white');
+
+  }
+  if (e.target.value==3) {
+    document.documentElement.setAttribute('data-theme', 'neon');
+    localStorage.setItem('theme', 'neon');
+
+  }
+ 
+}
+
+toggleSwitch.addEventListener('change', switchTheme, false);
+</script>
+
+  </body>
+</html>
